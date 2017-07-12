@@ -26,5 +26,57 @@ app.get('/', function(req, res) {
 		callback(data)
 		
 	})
-	res.render('index', {to: 'yo'})
+
+	// aggregate totals from the database
+	var foodLog = [{
+		name: 'burger',
+		quantity: 150,
+		calories: 400,
+		protein: 25,
+		carb: 35,
+		sugar: 20,
+		unsatfat: 10,
+		satfat: 10
+	}, {
+		name: 'cake',
+		quantity: 150,
+		calories: 500,
+		protein: 25,
+		carb: 70,
+		sugar: 20,
+		unsatfat: 10,
+		satfat: 10
+	}, {
+		name: 'banana',
+		quantity: 150,
+		calories: 200,
+		protein: 25,
+		carb: 35,
+		sugar: 20,
+		unsatfat: 10,
+		satfat: 10
+	}]
+	var actualTotal = {
+		calories: 700,
+		protein: 25,
+		carb: 35,
+		sugar: 20,
+		unsatfat: 10,
+		satfat: 10
+	}
+	var remainderTotal = {
+		calories: 100,
+		protein: 25,
+		carb: 70,
+		sugar: 20,
+		unsatfat: 10,
+		satfat: 10
+	}
+
+
+	res.render('index', {
+		actualTotal: actualTotal,
+		remainderTotal: remainderTotal,
+		foodLog: foodLog
+	})
 })

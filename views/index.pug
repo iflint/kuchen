@@ -1,3 +1,49 @@
-link(rel='stylesheet', href='main.css')
 
-div.proteinColor= to
+
+head
+	meta(name='viewport', content='width=device-width, initial-scale=1')
+	link(rel='stylesheet', href='main.css')
+
+body
+	div.fullRow.titleRow K U C H E N
+	div.fullRow.subtitleRow TODAY &#9660;
+
+	div.fullRow.calorieCount 700 of 3500
+	div.fullRow.calorieLabel CALORIES
+
+	div.itemRow.actualChart(style={'height': actualTotal.calories})
+		div.slice.protein(style={'flex': actualTotal.protein})
+		div.slice.divide
+		div.slice.carb(style={'flex': actualTotal.carb})
+		div.slice.sugar(style={'flex': actualTotal.sugar})
+		div.slice.divide
+		div.slice.unsatfat(style={'flex': actualTotal.unsatfat})
+		div.slice.satfat(style={'flex': actualTotal.satfat})
+
+	div.spaceRow
+
+	div.itemRow.remainderChart(style={'height': remainderTotal.calories})
+		div.slice.protein(style={'flex': remainderTotal.protein})
+		div.slice.divide
+		div.slice.carb(style={'flex': remainderTotal.carb})
+		div.slice.sugar(style={'flex': remainderTotal.sugar})
+		div.slice.divide
+		div.slice.unsatfat(style={'flex': remainderTotal.unsatfat})
+		div.slice.satfat(style={'flex': remainderTotal.satfat})
+
+	div.spaceRow
+
+	div.fullRow.subtitleRow FOOD LOG &#9660;	
+	each item in foodLog
+		div.itemRow
+			div.itemRow.itemChart(style={'height': item.calories})
+				div.slice.protein(style={'flex': item.protein})
+				div.slice.divide
+				div.slice.carb(style={'flex': item.carb})
+				div.slice.sugar(style={'flex': item.sugar})
+				div.slice.divide
+				div.slice.unsatfat(style={'flex': item.unsatfat})
+				div.slice.satfat(style={'flex': item.satfat})
+			div.itemQuantity= item.quantity
+			div.itemName= item.name
+		div.spaceRow

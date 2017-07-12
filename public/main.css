@@ -107,7 +107,7 @@ a {
 		height: 100%;
 	}
 	.divide {
-		flex: .01;
+		flex: 1;
 		background: transparent;
 	}
 	.protein {
