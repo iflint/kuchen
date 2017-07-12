@@ -1,0 +1,132 @@
+
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+body {
+	margin: 0;
+	box-sizing: border-box;
+	font-family: 'Raleway';
+	padding: 10%;
+}
+@media(max-width: 500px) {
+	body {
+		padding: 0;
+	}
+}
+a {
+	color: inherit;
+	text-decoration: inherit;
+}
+/* Structural Rows */
+.fullRow {
+	width: 100%;
+}
+.titleRow {
+	text-align: center;	
+	font-size: 2em;
+	margin-top: 1em;
+	margin-bottom: 1em;
+}
+.subtitleRow {
+	font-size: 1.2em;
+	margin-top: 1em;
+	margin-bottom: 1em;
+}
+.spaceRow {
+	height: .5em;
+}
+.filledRow {
+	width: 100%;
+	min-height: .5em;
+}
+.flexRow {
+	display: flex;
+}
+.baseFlex {
+	flex: 1;
+}
+
+/* Colors */
+.proteinColor {
+	background: #00868B;
+}
+.carbColor {
+	background: #F5D76E;
+}
+.fatColor {
+	background: #ff7f7f;
+}
+
+
+
+
+
+
+.targetChart {
+	height: 10em;
+}
+.actualChart {
+	height: 2em;
+}
+.remainderChart {
+	opacity: 0.5;
+	height: 8em;
+}
+.remainder {
+	text-align: center;
+	font-size: 1.2em;
+	margin-bottom: .5em;
+}
+.calorieCount {
+	margin-top: 1em;
+	font-size: 2em;
+	text-align: center;
+}
+.calorieLabel {
+	margin-bottom: 2em;
+	font-size: 	1.2em;
+	text-align: center;
+}
+.itemRow {
+	display: flex;
+	align-items: center;
+}
+.itemQuantity {
+	flex: 1;
+	font-size: 1.2em;
+	text-align: center;
+}
+.itemName {
+	flex: 2;
+	font-size: 1.2em;
+}
+.itemChart {
+	flex: 1;
+	height: 5em;
+	display: flex;
+}
+	.slice {
+		height: 100%;
+	}
+	.divide {
+		flex: .01;
+		background: transparent;
+	}
+	.protein {
+		flex: .25;
+		background: #00868B;
+	}
+	.carb {
+		flex: .45;
+		background: #F5D76E;
+	}
+	.sugar {
+		flex: .1;
+		background: #E08A1E;
+	}
+	.unsatfat {
+		flex: .15;
+		background: #ff7f7f;
+	}
+	.satfat {
+		flex: .05;
+		background: #8F1D21;
+	}
