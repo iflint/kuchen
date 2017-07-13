@@ -8,40 +8,62 @@ body
 	div.fullRow.titleRow K U C H E N
 	div.fullRow.subtitleRow TODAY &#9660;
 
-	div.fullRow.calorieCount 700 of 3500
+	div.fullRow.calorieCount
+		span= actual.calories
+		span  of 
+		span= target.calories
 	div.fullRow.calorieLabel CALORIES
 
-	div.itemRow.actualChart(style={'height': actualTotal.calories})
-		div.slice.protein(style={'flex': actualTotal.protein})
-		div.slice.divide
-		div.slice.carb(style={'flex': actualTotal.carb})
-		div.slice.sugar(style={'flex': actualTotal.sugar})
-		div.slice.divide
-		div.slice.unsatfat(style={'flex': actualTotal.unsatfat})
-		div.slice.satfat(style={'flex': actualTotal.satfat})
+	div.itemRow.actualChart(style={'height': actual.calories/target.calories*chartScale})
+		div.slice.protein(style={'flex': actual.protein/target.calories*chartScale})
+		div.slice.carb(style={'flex': actual.carb/target.calories*chartScale})
+		div.slice.sugar(style={'flex': actual.sugar/target.calories*chartScale})
+		div.slice.unsatfat(style={'flex': actual.unsatfat/target.calories*chartScale})
+		div.slice.satfat(style={'flex': actual.satfat/target.calories*chartScale})
 
 	div.spaceRow
 
-	div.itemRow.remainderChart(style={'height': remainderTotal.calories})
-		div.slice.protein(style={'flex': remainderTotal.protein})
-		div.slice.divide
-		div.slice.carb(style={'flex': remainderTotal.carb})
-		div.slice.sugar(style={'flex': remainderTotal.sugar})
-		div.slice.divide
-		div.slice.unsatfat(style={'flex': remainderTotal.unsatfat})
-		div.slice.satfat(style={'flex': remainderTotal.satfat})
+	div.itemRow.remainderChart(style={'height': (target.calories-actual.calories)/target.calories*chartScale})
+		div.slice.protein(style={'flex': (target.protein-actual.protein)/target.calories*chartScale})
+		div.slice.carb(style={'flex': (target.carb-actual.carb)/target.calories*chartScale})
+		div.slice.sugar(style={'flex': (target.sugar-actual.sugar)/target.calories*chartScale})
+		div.slice.unsatfat(style={'flex': (target.unsatfat-actual.unsatfat)/target.calories*chartScale})
+		div.slice.satfat(style={'flex': (target.satfat-actual.satfat)/target.calories*chartScale})
+
+	div.spaceRow
+
+	div.fullRow.flexRow
+		div.baseFlex
+			div.remainder
+				span= actual.protein
+				span  of 
+				span= target.protein
+			div.filledRow.proteinColor
+			div PROTEIN
+		div.baseFlex
+			div.remainder 
+				span= actual.carb+actual.sugar
+				span  of 
+				span= target.carb+target.sugar
+			div.filledRow.carbColor
+			div CARBS
+		div.baseFlex
+			div.remainder
+				span= actual.unsatfat+actual.satfat
+				span  of 
+				span= target.unsatfat+target.satfat
+			div.filledRow.fatColor
+			div FAT
 
 	div.spaceRow
 
 	div.fullRow.subtitleRow FOOD LOG &#9660;	
 	each item in foodLog
 		div.itemRow
-			div.itemRow.itemChart(style={'height': item.calories})
+			div.itemRow.itemChart(style={'height': item.calories/target.calories*chartScale})
 				div.slice.protein(style={'flex': item.protein})
-				div.slice.divide
 				div.slice.carb(style={'flex': item.carb})
 				div.slice.sugar(style={'flex': item.sugar})
-				div.slice.divide
 				div.slice.unsatfat(style={'flex': item.unsatfat})
 				div.slice.satfat(style={'flex': item.satfat})
 			div.itemQuantity= item.quantity

@@ -32,11 +32,11 @@ app.get('/', function(req, res) {
 		name: 'burger',
 		quantity: 150,
 		calories: 400,
-		protein: 25,
-		carb: 35,
-		sugar: 20,
-		unsatfat: 10,
-		satfat: 10
+		protein: 100,
+		carb: 200,
+		sugar: 80,
+		unsatfat: 60,
+		satfat: 60
 	}, {
 		name: 'cake',
 		quantity: 150,
@@ -56,27 +56,46 @@ app.get('/', function(req, res) {
 		unsatfat: 10,
 		satfat: 10
 	}]
-	var actualTotal = {
-		calories: 700,
-		protein: 25,
-		carb: 35,
-		sugar: 20,
-		unsatfat: 10,
-		satfat: 10
+
+	var actual = {
+		calories: 0,
+		protein: 0,
+		carb: 0,
+		sugar: 0,
+		unsatfat: 0,
+		satfat: 0
 	}
-	var remainderTotal = {
-		calories: 100,
-		protein: 25,
-		carb: 70,
-		sugar: 20,
-		unsatfat: 10,
-		satfat: 10
+	for (i in foodLog) {
+		actual.calories = actual.calories + foodLog[i].calories
+		actual.protein = actual.protein + foodLog[i].protein
+		actual.carb = actual.carb + foodLog[i].carb
+		actual.sugar = actual.sugar + foodLog[i].sugar
+		actual.unsatfat = actual.unsatfat + foodLog[i].unsatfat
+		actual.satfat = actual.satfat + foodLog[i].satfat
 	}
+	console.log(actual)
+	var target = {
+		calories: 3500,
+		protein: 750,
+		carb: 1500,
+		sugar: 250,
+		unsatfat: 750,
+		satfat: 250
+	}
+	// var actualTotal = {
+	// 	calories: 1100,
+	// 	protein: 25,
+	// 	carb: 35,
+	// 	sugar: 20,
+	// 	unsatfat: 10,
+	// 	satfat: 10
+	// }
 
 
 	res.render('index', {
-		actualTotal: actualTotal,
-		remainderTotal: remainderTotal,
-		foodLog: foodLog
+		target: target,
+		actual: actual,
+		foodLog: foodLog,
+		chartScale: 500
 	})
 })
