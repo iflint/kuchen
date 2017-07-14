@@ -33,39 +33,50 @@ body
 	div.spaceRow
 
 	div.fullRow.flexRow
-		div.baseFlex
+		div.flex1
 			div.remainder
 				span= actual.protein
 				span  of 
 				span= target.protein
-			div.filledRow.proteinColor
+			div.filledRow.protein
 			div PROTEIN
-		div.baseFlex
+		div.flex1
 			div.remainder 
 				span= actual.carb+actual.sugar
 				span  of 
 				span= target.carb+target.sugar
-			div.filledRow.carbColor
+			div.filledRow.carb
 			div CARBS
-		div.baseFlex
+		div.flex1
 			div.remainder
 				span= actual.unsatfat+actual.satfat
 				span  of 
 				span= target.unsatfat+target.satfat
-			div.filledRow.fatColor
+			div.filledRow.unsatfat
 			div FAT
 
 	div.spaceRow
 
-	div.fullRow.subtitleRow FOOD LOG &#9660;	
-	each item in foodLog
-		div.itemRow
-			div.itemRow.itemChart(style={'height': item.calories/target.calories*chartScale})
-				div.slice.protein(style={'flex': item.protein})
-				div.slice.carb(style={'flex': item.carb})
-				div.slice.sugar(style={'flex': item.sugar})
-				div.slice.unsatfat(style={'flex': item.unsatfat})
-				div.slice.satfat(style={'flex': item.satfat})
-			div.itemQuantity= item.quantity
-			div.itemName= item.name
+	div.fullRow.subtitleRow FOOD LOG &#9660;
 		div.spaceRow
+		each item in foodLog
+			div.itemRow
+				div.itemRow.itemChart(style={'height': item.calories/target.calories*chartScale})
+					div.slice.protein(style={'flex': item.protein})
+					div.slice.carb(style={'flex': item.carb})
+					div.slice.sugar(style={'flex': item.sugar})
+					div.slice.unsatfat(style={'flex': item.unsatfat})
+					div.slice.satfat(style={'flex': item.satfat})
+				div.flexSpace
+				div.flexHalf= item.quantity
+				div.flex2= item.name
+			div.spaceRow
+		div.itemRow
+			div.itemRow.itemChart.addItemChartLine
+				div.slice.addItemChartBox +
+			div.flexSpace
+			div.flexAddItem
+
+	div.spaceRow
+
+
