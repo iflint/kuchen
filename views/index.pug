@@ -35,48 +35,104 @@ body
 	div.fullRow.flexRow
 		div.flex1
 			div.remainder
-				span= actual.protein
-				span  of 
-				span= target.protein
+				div.inlineBlock
+					span= actual.protein
+				div.inlineBlock
+					span &nbsp;of&nbsp;
+					span= target.protein
 			div.filledRow.protein
 			div PROTEIN
 		div.flex1
 			div.remainder 
-				span= actual.carb+actual.sugar
-				span  of 
-				span= target.carb+target.sugar
+				div.inlineBlock
+					span= actual.carb+actual.sugar
+				div.inlineBlock
+					span &nbsp;of&nbsp;
+					span= target.carb+target.sugar
 			div.filledRow.carb
 			div CARBS
 		div.flex1
 			div.remainder
-				span= actual.unsatfat+actual.satfat
-				span  of 
-				span= target.unsatfat+target.satfat
+				div.inlineBlock
+					span= actual.unsatfat+actual.satfat
+				div.inlineBlock
+					span &nbsp;of&nbsp;
+					span= target.unsatfat+target.satfat
 			div.filledRow.unsatfat
 			div FAT
 
 	div.spaceRow
 
 	div.fullRow.subtitleRow FOOD LOG &#9660;
-		div.spaceRow
-		each item in foodLog
-			div.itemRow
-				div.itemRow.itemChart(style={'height': item.calories/target.calories*chartScale})
-					div.slice.protein(style={'flex': item.protein})
-					div.slice.carb(style={'flex': item.carb})
-					div.slice.sugar(style={'flex': item.sugar})
-					div.slice.unsatfat(style={'flex': item.unsatfat})
-					div.slice.satfat(style={'flex': item.satfat})
-				div.flexSpace
-				div.flexHalf= item.quantity
-				div.flex2= item.name
-			div.spaceRow
-		div.itemRow
-			div.itemRow.itemChart.addItemChartLine
-				div.slice.addItemChartBox +
-			div.flexSpace
-			div.flexAddItem
-
 	div.spaceRow
+	each item in foodLog
+		div.itemRow
+			div.itemRow.itemChart(style={'height': item.calories/target.calories*chartScale*1.2})
+				div.slice.protein(style={'flex': item.protein})
+				div.slice.carb(style={'flex': item.carb})
+				div.slice.sugar(style={'flex': item.sugar})
+				div.slice.unsatfat(style={'flex': item.unsatfat})
+				div.slice.satfat(style={'flex': item.satfat})
+			div.flexSpace
+			div.flexHalf= item.quantity
+			div.flex2= item.name
+		div.spaceRow
+	div.itemRow#addItemLine
+		div.itemRow.itemChart.addItemChart
+			div.slice.addItemChartBox(onclick='toggleAddItem()') +
+		div.flexSpace
+		div.flexAddItem
 
+	div#addItemArea
+		div.flexRow
 
+			div#addItem.flex3.subtitleRow.center.pointer(onclick='toggleItemArea(addItem, newItem)') ADD ITEM
+			div#yourItems.flex3.subtitleRow.center.pointer.gray(onclick='toggleItemArea(yourItems, userItems)') YOUR ITEMS
+			div#popular.flex3.subtitleRow.center.pointer.gray(onclick='toggleItemArea(popular, popularItems)') POPULAR
+			div.flex1.subtitleRow.pointer(onclick='toggleAddItem()') x
+
+		div.fullRow#newItem skld fs kdfjl sdjkf s
+		div.fullRow.none#userItems sfsd fsd 
+		div.fullRow.none#popularItems sdfsdfsd
+
+	script.
+		function toggleDiv(element) {
+			if (window.getComputedStyle(element).display == 'none') {
+				element.style.display = 'block';
+			} else {
+				element.style.display = 'none';
+			}
+		}
+
+		function toggleAddItem () {
+			var addItemLine = document.getElementById('addItemLine');
+			var addItemArea = document.getElementById('addItemArea');
+			if (window.getComputedStyle(addItemLine).display == 'none') {
+				addItemLine.style.display = 'flex';
+				addItemArea.style.display = 'none';
+			} else {
+				addItemLine.style.display = 'none';
+				addItemArea.style.display = 'block';
+			}
+		}
+
+		function toggleItemArea (clicked, target) {
+			var addItem = document.getElementById('addItem');
+			var yourItems = document.getElementById('yourItems');
+			var popular = document.getElementById('popular');
+			var newItem = document.getElementById('newItem');
+			var userItems = document.getElementById('userItems');
+			var popularItems = document.getElementById('popularItems');
+
+			if (window.getComputedStyle(target).display == 'none') {
+				addItem.style.color = 'gray';
+				yourItems.style.color = 'gray';
+				popular.style.color = 'gray';
+				newItem.style.display = 'none';
+				userItems.style.display = 'none';
+				popularItems.style.display = 'none';
+
+				target.style.display = 'block';
+				clicked.style.color = 'black';
+			}
+		}

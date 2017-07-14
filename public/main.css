@@ -15,7 +15,22 @@ a {
 	color: inherit;
 	text-decoration: inherit;
 }
+.gray {
+	color: gray;
+}
 /* Structural Rows */
+.inlineBlock {
+	display: inline-block;
+}
+.none {
+	display: none;
+}
+.pointer {
+	cursor: pointer;
+}
+.center {
+	text-align: center;
+}
 .fullRow {
 	width: 100%;
 }
@@ -39,6 +54,7 @@ a {
 }
 .flexRow {
 	display: flex;
+	width: 100%;
 }
 .flexSpace {
 	flex: .1;
@@ -73,7 +89,6 @@ a {
 	margin-bottom: .5em;
 }
 .calorieCount {
-	margin-top: 1em;
 	font-size: 2em;
 	text-align: center;
 }
@@ -110,7 +125,10 @@ a {
 		background: #8F1D21;
 	}
 
-.addItemChartLine {
+#addItemLine {
+	display: flex;
+}
+.addItemChart {
 	height: 3em;
 }
 .addItemChartBox {
@@ -119,7 +137,34 @@ a {
 	font-size: 3em;
 	line-height: 1em;
 	text-align: center;
+	cursor: pointer;
 }
 .flexAddItem {
 	flex: 2.5;
+}
+#addItemArea {
+	margin-top: 1em;
+	display: none;
+	border-top: solid 1px black;
+	box-sizing: border-box;
+	min-height: 5em;
+}
+.addItemMenuLine {
+	border-bottom: solid 1px black;
+	text-align: center;
+	width: 100%;
+	max-width: 10em;
+	margin-left: auto;
+	margin-right: auto;
+	min-height: 2em;
+	line-height: 2em;
+	cursor: pointer;
+}
+.addItemContentLine {
+	display: none;
+	border-bottom: solid 1px black;
+	width: 100%;
+	max-width: 30em;
+	margin-left: auto;
+	margin-right: auto;
 }

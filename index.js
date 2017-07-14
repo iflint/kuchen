@@ -55,7 +55,17 @@ app.get('/', function(req, res) {
 		sugar: 20,
 		unsatfat: 10,
 		satfat: 10
-	}]
+	}, {
+		name: 'banana',
+		quantity: 150,
+		calories: 80,
+		protein: 25,
+		carb: 35,
+		sugar: 20,
+		unsatfat: 10,
+		satfat: 10
+	}
+	]
 
 	var actual = {
 		calories: 0,
@@ -75,7 +85,7 @@ app.get('/', function(req, res) {
 	}
 	console.log(actual)
 	var target = {
-		calories: 3500,
+		calories: 1800,
 		protein: 750,
 		carb: 1500,
 		sugar: 250,
@@ -96,6 +106,6 @@ app.get('/', function(req, res) {
 		target: target,
 		actual: actual,
 		foodLog: foodLog,
-		chartScale: 500
+		chartScale: 200
 	})
 })
