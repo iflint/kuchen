@@ -29,7 +29,7 @@ app.get('/', function(req, res) {
 
 	// aggregate totals from the database
 	var foodLog = [{
-		name: 'burger',
+		name: 'Nothing Burger',
 		quantity: 150,
 		calories: 400,
 		protein: 100,
@@ -38,7 +38,7 @@ app.get('/', function(req, res) {
 		unsatfat: 60,
 		satfat: 60
 	}, {
-		name: 'cake',
+		name: 'Cake',
 		quantity: 150,
 		calories: 500,
 		protein: 25,
@@ -47,7 +47,7 @@ app.get('/', function(req, res) {
 		unsatfat: 10,
 		satfat: 10
 	}, {
-		name: 'banana',
+		name: 'Flour',
 		quantity: 150,
 		calories: 200,
 		protein: 25,
@@ -56,7 +56,25 @@ app.get('/', function(req, res) {
 		unsatfat: 10,
 		satfat: 10
 	}, {
-		name: 'banana',
+		name: 'Banana',
+		quantity: 150,
+		calories: 80,
+		protein: 25,
+		carb: 35,
+		sugar: 20,
+		unsatfat: 10,
+		satfat: 10
+	}, {
+		name: 'Flour',
+		quantity: 150,
+		calories: 200,
+		protein: 25,
+		carb: 35,
+		sugar: 20,
+		unsatfat: 10,
+		satfat: 10
+	}, {
+		name: 'Banana',
 		quantity: 150,
 		calories: 80,
 		protein: 25,

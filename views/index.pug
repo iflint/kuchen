@@ -14,7 +14,7 @@ body
 		span= target.calories
 	div.fullRow.calorieLabel CALORIES
 
-	div.itemRow.actualChart(style={'height': actual.calories/target.calories*chartScale})
+	div.flexRow.actualChart(style={'height': actual.calories/target.calories*chartScale})
 		div.slice.protein(style={'flex': actual.protein/target.calories*chartScale})
 		div.slice.carb(style={'flex': actual.carb/target.calories*chartScale})
 		div.slice.sugar(style={'flex': actual.sugar/target.calories*chartScale})
@@ -23,7 +23,7 @@ body
 
 	div.spaceRow
 
-	div.itemRow.remainderChart(style={'height': (target.calories-actual.calories)/target.calories*chartScale})
+	div.flexRow.remainderChart(style={'height': (target.calories-actual.calories)/target.calories*chartScale})
 		div.slice.protein(style={'flex': (target.protein-actual.protein)/target.calories*chartScale})
 		div.slice.carb(style={'flex': (target.carb-actual.carb)/target.calories*chartScale})
 		div.slice.sugar(style={'flex': (target.sugar-actual.sugar)/target.calories*chartScale})
@@ -50,7 +50,7 @@ body
 					span &nbsp;of&nbsp;
 					span= target.carb+target.sugar
 			div.filledRow.carb
-			div CARBS
+			div CARB
 		div.flex1
 			div.remainder
 				div.inlineBlock
@@ -66,19 +66,18 @@ body
 	div.fullRow.subtitleRow FOOD LOG &#9660;
 	div.spaceRow
 	each item in foodLog
-		div.itemRow
-			div.itemRow.itemChart(style={'height': item.calories/target.calories*chartScale*1.2})
+		div.flexRow.marginBottom1
+			div.flexRow.flex1(style={'height': item.calories/target.calories*chartScale*1.2})
 				div.slice.protein(style={'flex': item.protein})
 				div.slice.carb(style={'flex': item.carb})
 				div.slice.sugar(style={'flex': item.sugar})
 				div.slice.unsatfat(style={'flex': item.unsatfat})
 				div.slice.satfat(style={'flex': item.satfat})
 			div.flexSpace
-			div.flexHalf= item.quantity
+			div.flexHalf= item.quantity + 'g'
 			div.flex2= item.name
-		div.spaceRow
-	div.itemRow#addItemLine
-		div.itemRow.itemChart.addItemChart
+	div.flexRow#addItemLine
+		div.flexRow.flex1.addItemChart
 			div.slice.addItemChartBox(onclick='toggleAddItem()') +
 		div.flexSpace
 		div.flexAddItem
@@ -86,14 +85,58 @@ body
 	div#addItemArea
 		div.flexRow
 
-			div#addItem.flex3.subtitleRow.center.pointer(onclick='toggleItemArea(addItem, newItem)') ADD ITEM
-			div#yourItems.flex3.subtitleRow.center.pointer.gray(onclick='toggleItemArea(yourItems, userItems)') YOUR ITEMS
-			div#popular.flex3.subtitleRow.center.pointer.gray(onclick='toggleItemArea(popular, popularItems)') POPULAR
+			div#addItem.flex3.subtitleRow.center.pointer.black(onclick='toggleItemArea(this, newItem)') ADD ITEM
+			div#yourItems.flex3.subtitleRow.center.pointer.gray(onclick='toggleItemArea(this, userItems)') YOUR ITEMS
+			div#popular.flex3.subtitleRow.center.pointer.gray(onclick='toggleItemArea(this, popularItems)') POPULAR
 			div.flex1.subtitleRow.pointer(onclick='toggleAddItem()') x
 
-		div.fullRow#newItem skld fs kdfjl sdjkf s
-		div.fullRow.none#userItems sfsd fsd 
-		div.fullRow.none#popularItems sdfsdfsd
+		div.flexRow#newItem
+			div
+				input.itemInput#proteinInput(type='number')
+				input.itemInput#carbInput(type='number')
+				input.itemInput#fatInput(type='number')
+				div.spaceRow
+				input.itemInput#satfat(type='number')
+				input.itemInput#sugar(type='number')
+				input.itemInput#fiber(type='number')
+				input.itemInput#cholesterol(type='number')
+				input.itemInput#sodium(type='number')
+			div
+				div.itemInput PROTEIN
+				div.itemInput CARB
+				div.itemInput FAT
+				div.spaceRow
+				div.itemInput SATURATED FAT
+				div.itemInput SUGAR
+				div.itemInput FIBER
+				div.itemInput CHOLESTEROL
+				div.itemInput SODIUM
+				div.spaceRow
+				div.itemInput.pointer(onclick='addItem()') ADD ITEM
+		div.fullRow.flexWrap.none#userItems 
+			each item in foodLog
+				div.itemBox.pointer
+					div= item.name
+					div.flexRow.flex1(style={'height': item.calories/target.calories*chartScale*1.2})
+						div.slice.protein(style={'flex': item.protein})
+						div.slice.carb(style={'flex': item.carb})
+						div.slice.sugar(style={'flex': item.sugar})
+						div.slice.unsatfat(style={'flex': item.unsatfat})
+						div.slice.satfat(style={'flex': item.satfat})
+					
+				div.spaceRow
+		div.fullRow.flexWrap.none#popularItems
+			each item in foodLog
+				div.itemBox.pointer
+					div= item.name
+					div.flexRow.flex1(style={'height': item.calories/target.calories*chartScale*1.2})
+						div.slice.protein(style={'flex': item.protein})
+						div.slice.carb(style={'flex': item.carb})
+						div.slice.sugar(style={'flex': item.sugar})
+						div.slice.unsatfat(style={'flex': item.unsatfat})
+						div.slice.satfat(style={'flex': item.satfat})
+					
+				div.spaceRow
 
 	script.
 		function toggleDiv(element) {
@@ -124,6 +167,7 @@ body
 			var userItems = document.getElementById('userItems');
 			var popularItems = document.getElementById('popularItems');
 
+				console.log(clicked,target);
 			if (window.getComputedStyle(target).display == 'none') {
 				addItem.style.color = 'gray';
 				yourItems.style.color = 'gray';
@@ -132,7 +176,15 @@ body
 				userItems.style.display = 'none';
 				popularItems.style.display = 'none';
 
-				target.style.display = 'block';
+				target.style.display = 'flex';
 				clicked.style.color = 'black';
+			}
+		}
+
+		function addItem () {
+			var inputsArray = document.getElementsByTagName('input');
+			console.log(inputsArray[0].value);
+			if (!inputsArray[0].value || !inputsArray[1].value || !inputsArray[2].value) {
+				console.log('missing required field');
 			}
 		}
