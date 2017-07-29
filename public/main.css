@@ -22,6 +22,9 @@ a {
 .black {
 	color: black;
 }
+.opacity50 {
+	opacity: .5;
+}
 /* Structural Rows */
 .inlineBlock {
 	display: inline-block;
@@ -147,13 +150,6 @@ a {
 .flexAddItem {
 	flex: 2.5;
 }
-#addItemArea {
-	margin-top: 1em;
-	display: none;
-	border-top: solid 1px black;
-	box-sizing: border-box;
-	min-height: 5em;
-}
 .addItemMenuLine {
 	border-bottom: solid 1px black;
 	text-align: center;
@@ -173,14 +169,25 @@ a {
 	margin-left: auto;
 	margin-right: auto;
 }
-.itemInput {
-	display: block;
-	margin: 1em;
-	width: 10em;
-	line-height: 1.2em;
-}
+
 #newItem {
-	justify-content: center;
+	display: flex;
+	flex-wrap: wrap;
+}
+.newItemLine {
+	width: 100%;
+	margin-bottom: 1em;
+	text-align: center;
+}
+.itemInput {
+	padding: .5em;
+	box-sizing: border-box;
+	width: 20em;
+	max-width: 100%;
+}
+#addItemButton {
+	font-size: 1.2em;
+	margin: 1em;
 }
 .itemBox {
 	padding: 1em;

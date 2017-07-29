@@ -1,0 +1,96 @@
+
+mixin kuchen(item)
+	div.flexRow.flex1(style={'height': item.calories/target.calories*chartScale*1.2})
+		div.slice.protein(style={'flex': item.protein})
+		div.slice.carb(style={'flex': item.carb})
+		div.slice.sugar(style={'flex': item.sugar})
+		div.slice.unsatfat(style={'flex': item.unsatfat})
+		div.slice.satfat(style={'flex': item.satfat})
+
+head
+	meta(name='viewport', content='width=device-width, initial-scale=1')
+	link(rel='stylesheet', href='main.css')
+
+body
+	a.fullRow.titleRow(href='/') K U C H E N
+	div#addItemArea
+
+		div.flexRow
+
+			div#addItem.flex3.subtitleRow.center.pointer.black(onclick='toggleItemArea(this, newItem)') ADD ITEM
+			div#yourItems.flex3.subtitleRow.center.pointer.gray(onclick='toggleItemArea(this, userItems)') YOUR ITEMS
+			div#popular.flex3.subtitleRow.center.pointer.gray(onclick='toggleItemArea(this, popularItems)') POPULAR
+
+		form#newItem(action='/newItem' name='newItem' method='POST')
+			div.newItemLine
+				input.itemInput#nameInput(type='text' name='name' placeholder='NAME' step='0.001' required)
+			div.newItemLine
+				input.itemInput#servingInput(type='number' name='serving' placeholder='SERVING SIZE' step='0.001' required)
+			div.newItemLine
+				input.itemInput#proteinInput(type='number' name='cal' placeholder='CALORIES' step='0.001' required)
+			div.newItemLine
+				input.itemInput#proteinInput(type='number' name='pro' placeholder='PROTEIN' step='0.001' required)
+			div.newItemLine
+				input.itemInput#carbInput(type='number' name='car' placeholder='CARBOHYDRATES' step='0.001' required)
+			div.newItemLine
+				input.itemInput#fatInput(type='number' name='fat' placeholder='FAT' step='0.001' required)
+			div.spaceRow
+			div.newItemLine
+				input.itemInput#satfat(type='number' name='sat' placeholder='SATURATED FAT' step='0.001' required)
+			div.newItemLine
+				input.itemInput#sugar(type='number' name='sug' placeholder='SUGAR' step='0.001' required)
+			div.newItemLine
+				input.itemInput#fiber(type='number' name='fib' placeholder='FIBER' step='0.001' required)
+			div.newItemLine
+				input.itemInput#cholesterol(type='number' name='cho' placeholder='CHOLESTEROL' required)
+			div.newItemLine
+				input.itemInput#sodium(type='number' name='sod' placeholder='SODIUM' step='0.001' required)
+			div.newItemLine
+				button#addItemButton.pointer(type='submit') ADD ITEM
+
+		div.fullRow.flexWrap.none#userItems 
+			each item in foodLog
+				div.itemBox.pointer
+					div= item.name
+					+kuchen(item)
+					
+				div.spaceRow
+		div.fullRow.flexWrap.none#popularItems
+			each item in foodLog
+				div.itemBox.pointer
+					div= item.name
+					+kuchen(item)
+					
+				div.spaceRow
+
+	script.
+
+		function toggleItemArea (clicked, target) {
+			var addItem = document.getElementById('addItem');
+			var yourItems = document.getElementById('yourItems');
+			var popular = document.getElementById('popular');
+			var newItem = document.getElementById('newItem');
+			var userItems = document.getElementById('userItems');
+			var popularItems = document.getElementById('popularItems');
+
+			console.log(clicked,target);
+			if (window.getComputedStyle(target).display == 'none') {
+				addItem.style.color = 'gray';
+				yourItems.style.color = 'gray';
+				popular.style.color = 'gray';
+				newItem.style.display = 'none';
+				userItems.style.display = 'none';
+				popularItems.style.display = 'none';
+
+				target.style.display = 'flex';
+				clicked.style.color = 'black';
+			}
+		}
+
+		//- function addItem () {
+		//- 	var inputsArray = document.getElementsByTagName('input');
+		//- 	console.log(inputsArray[0].value);
+		//- 	if (!inputsArray[0].value || !inputsArray[1].value || !inputsArray[2].value) {
+		//- 		console.log('missing required field');
+		//- 	}
+		//- }
