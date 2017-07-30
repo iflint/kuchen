@@ -50,9 +50,12 @@ app.post('/newItem', function(req, res) {
 	db.collection('test').insert(item);
 })
 app.get('/addItem', function(req, res) {
-	res.render('addItem', {
-		foodLog: []
+	db.collection('test').find().toArray(function (err, data) {
+		res.render('addItem', {
+			foodLog: data
+		})
 	})
+	
 })
 app.get('/', function(req, res) {
 	//res.sendFile(__dirname + '/index.html')

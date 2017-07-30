@@ -7,6 +7,14 @@ mixin kuchen(item)
 		div.slice.unsatfat(style={'flex': item.unsatfat})
 		div.slice.satfat(style={'flex': item.satfat})
 
+mixin mainChart(item)
+	div.flexRow.flex1(style={'height': item.perUnit.cal*10})
+		div.slice.protein(style={'flex': item.perUnit.pro})
+		div.slice.carb(style={'flex': item.perUnit.nsc})
+		div.slice.sugar(style={'flex': item.perUnit.sug})
+		div.slice.unsatfat(style={'flex': item.perUnit.uns})
+		div.slice.satfat(style={'flex': item.perUnit.sat})
+
 head
 	meta(name='viewport', content='width=device-width, initial-scale=1')
 	link(rel='stylesheet', href='main.css')
@@ -52,14 +60,14 @@ body
 			each item in foodLog
 				div.itemBox.pointer
 					div= item.name
-					+kuchen(item)
+					+mainChart(item)
 					
 				div.spaceRow
 		div.fullRow.flexWrap.none#popularItems
 			each item in foodLog
 				div.itemBox.pointer
 					div= item.name
-					+kuchen(item)
+					+mainChart(item)
 					
 				div.spaceRow
 
